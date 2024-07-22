@@ -12,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Repository
 public class ListProductRepository implements ProductRepository {
 
-    private List<Product> products = new CopyOnWriteArrayList<>();
+    private final List<Product> products = new CopyOnWriteArrayList<>();
 
     @PostConstruct
     void initProducts() {

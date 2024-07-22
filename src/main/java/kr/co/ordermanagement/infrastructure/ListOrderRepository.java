@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository
 public class ListOrderRepository implements OrderRepository {
 
-    private List<Order> orders = new CopyOnWriteArrayList<>();
-    private AtomicLong sequence = new AtomicLong(1L);
+    private final List<Order> orders = new CopyOnWriteArrayList<>();
+    private final AtomicLong sequence = new AtomicLong(1L);
 
     @Override
     public Order add(Order order) {

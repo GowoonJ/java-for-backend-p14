@@ -3,6 +3,7 @@ package kr.co.ordermanagement.presentation.controller;
 import kr.co.ordermanagement.application.SimpleProductService;
 import kr.co.ordermanagement.presentation.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class ProductRestController {
         this.simpleProductService = simpleProductService;
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @GetMapping(value = "/products")
     public List<ProductDto> findProducts() {
         return simpleProductService.findAll();
     }

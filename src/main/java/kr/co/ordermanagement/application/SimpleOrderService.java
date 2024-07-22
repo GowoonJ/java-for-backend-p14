@@ -9,22 +9,19 @@ import kr.co.ordermanagement.domain.product.ProductRepository;
 import kr.co.ordermanagement.presentation.dto.ChangeStateRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
+import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class SimpleOrderService {
 
-    private ProductRepository productRepository;
-    private OrderRepository orderRepository;
-
-    @Autowired
-    public SimpleOrderService(ProductRepository productRepository, OrderRepository orderRepository) {
-        this.productRepository = productRepository;
-        this.orderRepository = orderRepository;
-    }
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
     public OrderResponseDto createOrder(List<OrderProductRequestDto> orderProductRequestDtos) {
         List<OrderedProduct> orderedProducts = makeOrderedProducts(orderProductRequestDtos);
@@ -40,8 +37,7 @@ public class SimpleOrderService {
     public OrderResponseDto findById(Long orderId) {
         Order order = orderRepository.findById(orderId);
 
-        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
-        return orderResponseDto;
+        return OrderResponseDto.toDto(order);
     }
 
     public OrderResponseDto changeState(Long orderId, ChangeStateRequestDto changeStateRequestDto) {
@@ -50,28 +46,22 @@ public class SimpleOrderService {
 
         order.changeStateForce(state);
 
-        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
-        return orderResponseDto;
+        return OrderResponseDto.toDto(order);
     }
 
     public List<OrderResponseDto> findByState(State state) {
         List<Order> orders = orderRepository.findByState(state);
 
-        List<OrderResponseDto> orderResponseDtos = orders
-                .stream()
+        return orders.stream()
                 .map(order -> OrderResponseDto.toDto(order))
                 .toList();
-
-        return orderResponseDtos;
     }
 
     public OrderResponseDto cancelOrderById(Long orderId) {
         Order order = orderRepository.findById(orderId);
-
         order.cancel();
 
-        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
-        return orderResponseDto;
+        return OrderResponseDto.toDto(order);
     }
 
     private List<OrderedProduct> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
@@ -95,7 +85,6 @@ public class SimpleOrderService {
 
     private void decreaseProductsAmount(List<OrderedProduct> orderedProducts) {
         orderedProducts
-                .stream()
                 .forEach(orderedProduct -> {
                     Long productId = orderedProduct.getId();
                     Product product = productRepository.findById(productId);
