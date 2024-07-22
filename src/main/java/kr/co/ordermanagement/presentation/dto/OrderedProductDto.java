@@ -1,6 +1,6 @@
 package kr.co.ordermanagement.presentation.dto;
 
-import kr.co.ordermanagement.domain.order.OrderedProduct;
+import kr.co.ordermanagement.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +12,7 @@ public class OrderedProductDto {
     private Integer price;
     private Integer amount;
 
-    public static OrderedProductDto toDto(OrderedProduct orderedProduct) {
+    public static OrderedProductDto toDto(Product orderedProduct) {
         return new OrderedProductDto(
                 orderedProduct.getId(),
                 orderedProduct.getName(),

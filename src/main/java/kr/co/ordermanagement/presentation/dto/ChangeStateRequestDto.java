@@ -5,5 +5,5 @@ import lombok.Getter;
 
 @Getter
 public class ChangeStateRequestDto {
-    private State state;
+	private State state;
 }

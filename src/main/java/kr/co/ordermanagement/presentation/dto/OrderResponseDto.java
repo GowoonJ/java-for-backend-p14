@@ -1,11 +1,11 @@
 package kr.co.ordermanagement.presentation.dto;
 
+import java.util.List;
+
 import kr.co.ordermanagement.domain.order.Order;
 import kr.co.ordermanagement.domain.order.State;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.List;
 
 @Getter
 @AllArgsConstructor

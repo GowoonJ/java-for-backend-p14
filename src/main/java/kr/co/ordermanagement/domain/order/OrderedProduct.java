@@ -1,32 +1,17 @@
 package kr.co.ordermanagement.domain.order;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
+@AllArgsConstructor
 public class OrderedProduct {
-    private Long id;
-    private String name;
-    private Integer price;
-    private Integer amount;
 
-    public OrderedProduct(Long id, String name, Integer price, Integer amount) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.amount = amount;
-    }
+	private Long id;
 
-    public Long getId() {
-        return id;
-    }
+	private String name;
 
-    public String getName() {
-        return name;
-    }
+	private Integer price;
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
+	private Integer amount;
 }
